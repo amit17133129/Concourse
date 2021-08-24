@@ -1,0 +1,32 @@
+jobs:
+- name: terraform
+  plan:
+  - task: say-hello
+    config:
+      platform: linux
+      image_resource:
+        type: docker-image
+        source:
+          repository: centos
+          tag: 7
+      run:
+        path: /bin/sh
+        args:
+        - -c
+        - |
+          yum update -y
+          yum install wget unzip -y
+          yum install wget -y
+          wget https://releases.hashicorp.com/terraform/0.12.2/terraform_0.12.2_linux_amd64.zip
+          unzip ./terraform_0.12.2_linux_amd64.zip
+          mv terraform  /usr/local/bin/terraform
+          chmod +x /usr/local/bin/terraform
+          terraform –v
+          yum install git -y
+          git clone https://github.com/amit17133129/AWS_S3_Bucket_Iam_Policy_attachment_Terraform.git
+          cd AWS_S3_Bucket_Iam_Policy_attachment_Terraform/modules/main_module
+          rm -rf terraform.tfstate
+          terraform init
+          terraform apply -auto-approve -var access_key="enter_access_key"   -var secret_key="secret_key"
+          sleep 300
+          terraform destroy -auto-approve -var access_key="enter_access_key"   -var secret_key="secret_key"
