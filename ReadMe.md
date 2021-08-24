@@ -256,6 +256,7 @@ create a terraform.yml file and run the below commands.
 ```
 fly -t ci set-pipeline -p  terraform_aws -c terraform.yml
 ```
+you can find terraform code [here](https://github.com/amit17133129/AWS_S3_Bucket_Iam_Policy_attachment_Terraform)
 
 <p align="center">
   <img width="1000" height="525" src="https://github.com/amit17133129/Concourse/blob/main/images/aws_terraform_pipeline_creation.jpg?raw=true">
