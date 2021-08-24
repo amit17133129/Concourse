@@ -181,7 +181,7 @@ After logging in, you should see a screen with no pipelines configured:
 
 We require the fly cli client which is used to interact with concourse. On your local machine, download the fly archive, extract the archive and move the fly binary to your path.
 
-I will by using the client for Mac, for alternate versions have a look at their [https://github.com/concourse/concourse/releases](releases) page.
+I will by using the client for Mac, for alternate versions have a look at their [releases](https://github.com/concourse/concourse/releases) page.
 
 
 ```
@@ -239,7 +239,7 @@ fly -t ci containers
 handle  worker  pipeline  job  build #  build id  type  name  attempt
 ```
 
-If you are running Concourse on Ubuntu 18 and you ran into this [https://github.com/concourse/concourse/issues/374](issue):
+If you are running Concourse on Ubuntu 18 and you ran into this [issue](https://github.com/concourse/concourse/issues/374):
 ```
 sudo apt install resolvconf
 echo -e "nameserver 8.8.4.4\nnameserver 8.8.8.8" > /etc/resolvconf/resolv.conf.d/head
