@@ -239,3 +239,75 @@ fly -t ci containers
 handle  worker  pipeline  job  build #  build id  type  name  attempt
 ```
 
+If you are running Concourse on Ubuntu 18 and you ran into this [https://github.com/concourse/concourse/issues/374](issue):
+```
+sudo apt install resolvconf
+echo -e "nameserver 8.8.4.4\nnameserver 8.8.8.8" > /etc/resolvconf/resolv.conf.d/head
+sudo service resolvconf restart
+```
+
+
+Now create a pipeline in .yml file. Here i am integrating terraform with concourse so, i am cloning terraform code from my github account and then running in the cocourse ci pipeline.
+
+create a terraform.yml file and run the below commands.
+
+# Set the pipeline
+
+```
+fly -t ci set-pipeline -p  terraform_aws -c terraform.yml
+```
+
+<p align="center">
+  <img width="1000" height="525" src="https://github.com/amit17133129/Concourse/blob/main/images/aws_terraform_pipeline_creation.jpg?raw=true">
+</p>
+you will see the beow status in the dashboard
+
+<p align="center">
+  <img width="1000" height="525" src="https://github.com/amit17133129/Concourse/blob/main/images/pipeline_unpaused.jpg?raw=true">
+</p>
+
+# Unpause the pipeline
+```
+fly -t ci unpause-pipeline -p  terraform_aws
+```
+<p align="center">
+  <img width="1000" height="80" src="https://github.com/amit17133129/Concourse/blob/main/images/unpause%20pipeline.jpg?raw=true">
+</p>
+
+you will see the beow status in the dashboard
+
+<p align="center">
+  <img width="1000" height="525" src="https://github.com/amit17133129/Concourse/blob/main/images/pipeline_pending_state.jpg?raw=true">
+</p>
+
+# Trigger the pipeline
+```
+fly -t ci trigger-job --job  terraform_aws/terraform
+```
+<p align="center">
+  <img width="1000" height="80" src="https://github.com/amit17133129/Concourse/blob/main/images/pipeline%20started.jpg?raw=true">
+</p>
+<p align="center">
+  <img width="1000" height="525" src="https://github.com/amit17133129/Concourse/blob/main/images/running%20status.jpg?raw=true">
+</p>
+
+
+
+<p align="center">
+  <img width="1000" height="525" src="https://github.com/amit17133129/Concourse/blob/main/images/terraform%20pipeline_job.jpg?raw=true">
+</p>
+
+
+<p align="center">
+  <img width="1000" height="525" src="https://github.com/amit17133129/Concourse/blob/main/images/pulled%20centos%20image.jpg?raw=true">
+</p>
+
+# Terraform init
+<p align="center">
+  <img width="1000" height="525" src="https://github.com/amit17133129/Concourse/blob/main/images/terraform%20init.jpg?raw=true">
+</p>
+
+## terraform Apply
+<p align="center">
+  <img width="1000" height="525" src="https://github.com/amit17133129/Concourse/blob/main/images/terraform%20apply.jpg?raw=true">
+</p>
